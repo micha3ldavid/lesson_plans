@@ -9,10 +9,12 @@ length: 90
 * define "string"
 * define "integer"
 * define "float"
+* define "method"
 * assign values to variables using proper naming conventions
 * use string concatenation with literal strings and variables
 * use string interpolation with variables
 * call key methods on strings
+* pass arguments to key string methods, changing the result
 * call key methods on integers and floats
 * read Ruby documentation
 
@@ -44,6 +46,13 @@ Which of the following are valid strings? Why?
 6. 'welcome to Turing'
 7. '987654321."
 8. "hot chocolate is the best"
+9. "To quote Nike, "Just do it.""
+
+### Escaping Quotes
+
+Since strings are defined by wrapping characters in quotations, there becomes a problem when a string has quotation marks as part of its contents (as seen in example 9 above). To get around this, simply provide a backslash before inner quotation marks.
+
+1. "To quote Nike, \"Just do it.\""
 
 ### Substrings
 
@@ -89,10 +98,10 @@ So if a letter has both a positive and negative position number, which should yo
 
 ### Introduction to String Methods
 
-A `method` in Ruby can be thought of as a message that's being sent to an object. The message is received, and something is returned where it was called. Here's a simple example:
+A `method` in Ruby can be thought of as an action that is to be performed on the Object it belongs to. Methods, or “actions,” are simply functions that contain one or more code statements (or "behavior") that can either alter the existing Object or return a new value to us. Here's a simple example.
 
 ```ruby
-"hello, world".upcase
+"hello, world".upcase => "HELLO, WORLD"
 ```
 
 The method is `.upcase`, the object it's being called on is "hello, world", and the return value is "HELLO, WORLD". Like the above example, most methods you'll see use what we call "dot notation" where there is a dot between the object and the method. 
@@ -103,6 +112,43 @@ Let's open up some Ruby documentation: [String](http://ruby-doc.org/core-2.2.3/S
 capitalize
 center
 ```
+
+First let's look at `capitalize`. Capitalize is a method that does exactly what it sounds like: capitalize a String object. Let's take a peek at what that looks like:
+
+```ruby
+"hello, world".capitalize => "Hello, world"
+```
+
+Pretty strait forward. Now let's look at `center`. 
+
+```ruby
+"hello, world".center => Argument Error
+```
+
+### A Breif look at Arguments
+
+Oh what's this? We have an error. The method `center ` requires what is called an argument. An arguments is additional data, which is passed into a method and used to determine the final outcome. 
+
+*Try it*: Let's take a look at using `center` again, this time with an argument.
+
+```ruby
+"hello, world".center(20); => "    hello, world    "
+```
+
+Notice the parenthesis we used in order to provide `center` with an argument. In most programming languages, methods require parenthesis in order to be called, however, they are optinal in Ruby. But just because something is optional does not mean it should be left out. 
+
+*Try it*: Let's take a look at our `center` method with, and without, the use of parenthesis.
+
+```ruby
+"hello, world".center(20, "xoxo")
+"hello, world.center 20, "xoxo"
+```
+
+Both of the above produce the same result but one is much more obvious that the value 20 and "xoxo" belong to a method call, while the other is harder to read and has the potential to be visually confusing. 
+
+*Question*: Which of the two makes more sense to you?
+
+I personally prefer to use parenthesis whenever I make a method call, even if the method does not take any arguments. For me, it's visually helpful when reading, writing, and maintaining code.
 
 *Try it*: Find the following methods and their documentation, then experiment with them in IRB and jot down your own definition of what the method does. *You may need/want to Google other definitions or examples for some*. 
 
@@ -174,7 +220,7 @@ If you compare the output you’ll see that they give the exact same results. Th
 
 Now that we've talked about basic variable assignment, let's get into some of the more detailed rules. 
 
-In some languages you need to specify what type of data (like a number, word, etc) can go in a certain variable. Ruby, however, has a flexible type system where any variable can hold any kind of data. Additionally, some languages require you to "declare" a variable before you assign a value to it. Ruby variables are automatically created when you assign a value to them. Let’s try an example:
+In some languages you need to specify what type of data (like a number, word, etc) can go in a certain variable. This is called a Strict Typed Language. Ruby, however, has a flexible type system where any variable can hold any kind of data. This is called a Loosely Typed Language. Additionally, some languages require you to "declare" a variable before you assign a value to it. Ruby variables are automatically created when you assign a value to them. Let’s try an example:
 
 ```ruby
 x = 10
